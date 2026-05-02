@@ -70,6 +70,15 @@ const cards = [
     </div>
   </div>
 
+  <div class="alba-outro body-prose">
+    <p>
+      La experiencia de Alba es solo un ejemplo de una tendencia cada vez más extendida. Aunque el
+      festival actúa como principal reclamo, muchos asistentes aprovechan estos viajes para
+      descubrir nuevos destinos, su gastronomía y su cultura, enriqueciendo así la experiencia más
+      allá de lo musical.
+    </p>
+  </div>
+
   <div style="margin-top:64px;">
     <div class="section-rubric" style="margin-bottom:12px;">Transcripción · selección</div>
     <h3 class="display intro-h3" style="margin-bottom:32px;">
@@ -128,8 +137,24 @@ const cards = [
   .alba-intro {
     margin: 16px 0 48px;
   }
+  .alba-outro {
+    margin: 32px 0 0;
+  }
+  /* Drop-cap only makes sense at the opening; cancel for the outro */
+  .alba-outro p:first-child::first-letter {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    float: none;
+    line-height: inherit;
+    margin: 0;
+    color: inherit;
+    font-style: inherit;
+    font-variation-settings: normal;
+  }
   @media (max-width: 880px) {
     .intro-h3 { font-size: 1.6rem; }
     .alba-intro { margin: 12px 0 32px; }
+    .alba-outro { margin: 24px 0 0; }
   }
 </style>
