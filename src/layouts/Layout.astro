@@ -29,7 +29,7 @@ const {
     <script is:inline>
       // Apply persisted theme before paint to avoid flash
       try {
-        const t = localStorage.getItem('tm-theme') || 'light';
+        const t = localStorage.getItem('tm-theme') || 'dark';
         document.documentElement.setAttribute('data-theme', t);
       } catch {}
     </script>

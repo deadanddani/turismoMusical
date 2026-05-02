@@ -40,7 +40,7 @@ import InterviewModal from '../components/InterviewModal.astro';
     try { localStorage.setItem('tm-theme', t); } catch {}
   };
 
-  applyTheme(localStorage.getItem('tm-theme') || 'light');
+  applyTheme(localStorage.getItem('tm-theme') || 'dark');
   themeBtn?.addEventListener('click', () => {
     const cur = document.documentElement.getAttribute('data-theme') || 'light';
     applyTheme(cur === 'light' ? 'dark' : 'light');
