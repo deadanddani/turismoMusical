@@ -1,6 +1,7 @@
 ---
 import SectionHead from '../SectionHead.astro';
 import { INTERVIEWS } from '../../data/interviews';
+const base = import.meta.env.BASE_URL;
 
 const albaQA = [
   { q: '¿A cuántos festivales has ido?', a: 'A tres.' },
@@ -42,7 +43,7 @@ const cards = [
     <div class="video-frame">
       <video
         data-alba-video
-        src="/media/alba-interview.mp4"
+        src={`${base}media/alba-interview.mp4`}
         playsinline
         controls
         preload="metadata"

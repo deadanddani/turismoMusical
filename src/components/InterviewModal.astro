@@ -1,5 +1,21 @@
 ---
 import { INTERVIEWS } from '../data/interviews';
+
+const base = import.meta.env.BASE_URL;
+const INTERVIEWS_RESOLVED = Object.fromEntries(
+  Object.entries(INTERVIEWS).map(([key, interview]) => [
+    key,
+    interview.video
+      ? {
+          ...interview,
+          video: {
+            ...interview.video,
+            src: `${base}${interview.video.src.replace(/^\//, '')}`,
+          },
+        }
+      : interview,
+  ])
+);
 ---
 
 <div class="modal-backdrop" data-modal-backdrop style="display:none">
@@ -18,7 +34,7 @@ import { INTERVIEWS } from '../data/interviews';
   </div>
 </div>
 
-<script is:inline define:vars={{ INTERVIEWS }}>
+<script is:inline define:vars={{ INTERVIEWS: INTERVIEWS_RESOLVED }}>
   window.__INTERVIEW_DATA__ = INTERVIEWS;
 </script>
 

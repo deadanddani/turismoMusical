@@ -1,6 +1,7 @@
 ---
 import SectionHead from '../SectionHead.astro';
 import VoiceReader from '../VoiceReader.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="article-section" data-section="promocion">
@@ -52,7 +53,7 @@ import VoiceReader from '../VoiceReader.astro';
 
       <div class="figure">
         <div class="figure-img wide">
-          <img src="/media/fig-03.png" alt="Móvil grabando un escenario durante un concierto" loading="lazy" />
+          <img src={`${base}media/fig-03.png`} alt="Móvil grabando un escenario durante un concierto" loading="lazy" />
         </div>
         <div class="figure-caption">
           <span class="num">Fig. 03</span>
