@@ -1,0 +1,71 @@
+---
+import SectionHead from '../SectionHead.astro';
+import VoiceReader from '../VoiceReader.astro';
+
+const rows = [
+  { year: 'Ahora', head: 'Profesionalización del sector', body: 'Estructuras, proveedores y herramientas tecnológicas han cambiado, propiciando el desarrollo de los festivales hacia un producto más maduro.' },
+  { year: 'Próximo', head: 'Experiencia por encima del cartel', body: 'Lo que las personas ansían es «vivir un festival», en palabras del director del Mad Cool. Servicios, comodidad y ambiente ganan peso.' },
+  { year: '+800M €', head: 'Récord en venta de entradas', body: 'Según el Anuario de la Música en Vivo 2026, los festivales en España ingresaron más de 800 millones de euros en venta de entradas: un 11% más que en 2024.' },
+  { year: 'Internacional', head: 'Público cada vez más global', body: 'España se consolida como destino preferente para el turismo de festivales por la oferta y la climatología. El público internacional crece año tras año.' },
+];
+---
+
+<section class="article-section" data-section="futuro">
+  <VoiceReader />
+  <SectionHead
+    kicker="Capítulo 05"
+    rubric="Futuro del turismo musical"
+    title="Escenarios <span class='em'>por venir</span>"
+    deck="El sector está en plena transformación gracias a los jóvenes. La gente busca cada vez más experiencias en directo, no menos."
+    byline="Sofía González"
+  />
+
+  <div class="body-grid">
+    <aside class="body-aside">
+      <div class="body-aside-label">Tendencias</div>
+      <ul class="body-aside-list">
+        <li>Más experiencia, menos pasividad</li>
+        <li>Profesionalización del sector</li>
+        <li>Internacionalización del público</li>
+        <li>Tecnología punta como diferencial</li>
+      </ul>
+    </aside>
+
+    <div class="body-prose">
+      <p>
+        El sector de la música está en plena transformación gracias a los jóvenes. Aunque pueda
+        pensarse que el mundo va más encaminado a lo digital, las personas buscan más las
+        experiencias que pueden vivir en directo.
+      </p>
+
+      <blockquote class="pullquote">
+        «La consolidación de experiencias vinculadas a la música apuntan a una tendencia al alza.»
+        <cite>Reggaeton Beach Festival</cite>
+      </blockquote>
+
+      <p>
+        Los organizadores y promotores deben mejorar al máximo esa experiencia. En los festivales
+        más conocidos se ofrecen servicios diferenciales para aportar comodidad. Javier Arnaiz,
+        director del Mad Cool, observa una profesionalización del sector con tecnología y equipos
+        punteros.
+      </p>
+
+      <div class="timeline">
+        {rows.map((r) => (
+          <div class="timeline-row">
+            <div class="timeline-year">{r.year}</div>
+            <div class="timeline-headline">{r.head}</div>
+            <div class="timeline-body">{r.body}</div>
+          </div>
+        ))}
+      </div>
+
+      <p>
+        Los festivales en España llevan una trayectoria cada vez más ascendente. España se ha
+        consolidado como destino preferente para el turismo de festivales tanto por la oferta como
+        por la climatología. Y el público es cada vez más internacional, por lo que los viajes para
+        acudir a estos eventos están garantizados.
+      </p>
+    </div>
+  </div>
+</section>

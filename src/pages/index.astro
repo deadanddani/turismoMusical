@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Masthead from '../components/Masthead.astro';
+import Hero from '../components/Hero.astro';
+import Tabs from '../components/Tabs.astro';
+import Reportaje from '../components/sections/Reportaje.astro';
+import Entrevistas from '../components/sections/Entrevistas.astro';
+import Promocion from '../components/sections/Promocion.astro';
+import Problemas from '../components/sections/Problemas.astro';
+import Futuro from '../components/sections/Futuro.astro';
+import Colofon from '../components/Colofon.astro';
+import InterviewModal from '../components/InterviewModal.astro';
+---
+
+<Layout title="El turismo musical · Una nueva forma de viajar impulsada por la música">
+  <Masthead />
+  <main>
+    <Hero />
+    <Tabs />
+    <div data-section-host>
+      <Reportaje />
+      <Entrevistas />
+      <Promocion />
+      <Problemas />
+      <Futuro />
+    </div>
+  </main>
+  <Colofon />
+  <InterviewModal />
+</Layout>
+
+<script>
+  // ===== Theme toggle =====
+  const themeBtn = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  const themeLabel = document.querySelector<HTMLElement>('[data-theme-label]');
+
+  const applyTheme = (t: string) => {
+    document.documentElement.setAttribute('data-theme', t);
+    if (themeLabel) themeLabel.textContent = t === 'light' ? 'Día' : 'Noche';
+    try { localStorage.setItem('tm-theme', t); } catch {}
+  };
+
+  applyTheme(localStorage.getItem('tm-theme') || 'light');
+  themeBtn?.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(cur === 'light' ? 'dark' : 'light');
+  });
+
+  // ===== Tab switching =====
+  const sections = document.querySelectorAll<HTMLElement>('[data-section]');
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab]');
+  const tabsBar = document.querySelector<HTMLElement>('[data-tabs]');
+
+  const showTab = (id: string, scroll = true) => {
+    sections.forEach((s) => {
+      s.style.display = s.dataset.section === id ? '' : 'none';
+    });
+    tabs.forEach((t) => t.classList.toggle('active', t.dataset.tab === id));
+    try { localStorage.setItem('tm-tab', id); } catch {}
+    if (scroll && tabsBar) {
+      window.scrollTo({ top: tabsBar.offsetTop - 70, behavior: 'smooth' });
+    }
+  };
+
+  tabs.forEach((t) => {
+    t.addEventListener('click', () => showTab(t.dataset.tab!));
+  });
+
+  showTab(localStorage.getItem('tm-tab') || 'reportaje', false);
+
+  // ===== Voice reader =====
+  type VR = {
+    root: HTMLElement;
+    btn: HTMLButtonElement;
+    label: HTMLElement;
+    iconPlay: SVGElement;
+    iconPause: SVGElement;
+    stop: HTMLButtonElement;
+    section: HTMLElement;
+    defaultLabel: string;
+    playing: boolean;
+  };
+
+  const voiceReaders: VR[] = [];
+  document.querySelectorAll<HTMLElement>('[data-voice-reader]').forEach((root) => {
+    const section = root.closest<HTMLElement>('[data-section]');
+    if (!section) return;
+    voiceReaders.push({
+      root,
+      btn: root.querySelector('[data-voice-play]')!,
+      label: root.querySelector('[data-voice-label]')!,
+      iconPlay: root.querySelector('[data-voice-icon-play]')!,
+      iconPause: root.querySelector('[data-voice-icon-pause]')!,
+      stop: root.querySelector('[data-voice-stop]')!,
+      section,
+      defaultLabel: root.querySelector<HTMLElement>('[data-voice-label]')!.dataset.defaultLabel || 'Escuchar capítulo',
+      playing: false,
+    });
+  });
+
+  const supportsSpeech = typeof window !== 'undefined' && 'speechSynthesis' in window;
+  if (!supportsSpeech) {
+    voiceReaders.forEach((v) => (v.root.style.display = 'none'));
+  }
+
+  const setPlayingState = (vr: VR, playing: boolean) => {
+    vr.playing = playing;
+    vr.root.classList.toggle('playing', playing);
+    vr.label.textContent = playing ? 'Reproduciendo' : vr.defaultLabel;
+    (vr.iconPlay as HTMLElement).style.display = playing ? 'none' : '';
+    (vr.iconPause as HTMLElement).style.display = playing ? '' : 'none';
+    vr.stop.style.display = playing ? '' : 'none';
+  };
+
+  const extractText = (section: HTMLElement) => {
+    const titleEl = section.querySelector<HTMLElement>('.section-title');
+    const deckEl = section.querySelector<HTMLElement>('.section-deck');
+    const proseEls = section.querySelectorAll<HTMLElement>(
+      '.body-prose p, .body-prose h3, .pullquote, .challenge-title, .challenge-body, .timeline-headline, .timeline-body'
+    );
+    let text = '';
+    if (titleEl) text += titleEl.innerText + '. ';
+    if (deckEl) text += deckEl.innerText + '. ';
+    proseEls.forEach((el) => { text += el.innerText + ' '; });
+    return text.replace(/\s+/g, ' ').trim();
+  };
+
+  const stopAll = () => {
+    if (supportsSpeech) window.speechSynthesis.cancel();
+    voiceReaders.forEach((v) => setPlayingState(v, false));
+  };
+
+  voiceReaders.forEach((vr) => {
+    vr.btn.addEventListener('click', () => {
+      if (!supportsSpeech) return;
+      if (vr.playing) {
+        stopAll();
+        return;
+      }
+      stopAll();
+      const text = extractText(vr.section);
+      if (!text) return;
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'es-ES';
+      const voices = window.speechSynthesis.getVoices();
+      const spanish = voices.find((v) => v.lang && v.lang.toLowerCase().startsWith('es'));
+      if (spanish) u.voice = spanish;
+      u.onend = () => setPlayingState(vr, false);
+      u.onerror = () => setPlayingState(vr, false);
+      window.speechSynthesis.speak(u);
+      setPlayingState(vr, true);
+    });
+    vr.stop.addEventListener('click', stopAll);
+  });
+
+  // ===== Interview modal =====
+  type Interview = {
+    name: string;
+    meta: string;
+    qa: { q: string; a: string }[];
+    video?: { src: string; caption?: string };
+  };
+  const data = (window as any).__INTERVIEW_DATA__ as Record<string, Interview>;
+  const backdrop = document.querySelector<HTMLElement>('[data-modal-backdrop]')!;
+  const titleEl = document.querySelector<HTMLElement>('[data-modal-title]')!;
+  const metaEl = document.querySelector<HTMLElement>('[data-modal-meta]')!;
+  const qaEl = document.querySelector<HTMLElement>('[data-modal-qa]')!;
+  const closeBtn = document.querySelector<HTMLButtonElement>('[data-modal-close]')!;
+  const videoWrap = document.querySelector<HTMLElement>('[data-modal-video]')!;
+  const videoEl = document.querySelector<HTMLVideoElement>('[data-modal-video-el]')!;
+  const videoCap = document.querySelector<HTMLElement>('[data-modal-video-caption]')!;
+
+  const openModal = (key: string) => {
+    const d = data[key];
+    if (!d) return;
+    titleEl.textContent = d.name;
+    metaEl.textContent = d.meta;
+    if (d.video) {
+      videoEl.src = d.video.src;
+      videoCap.textContent = d.video.caption || '';
+      videoCap.style.display = d.video.caption ? '' : 'none';
+      videoWrap.style.display = '';
+    } else {
+      videoEl.removeAttribute('src');
+      videoEl.load();
+      videoWrap.style.display = 'none';
+    }
+    qaEl.innerHTML = d.qa
+      .map(
+        (qa) =>
+          `<div class="qa-block"><div class="qa-q">${qa.q}</div><div class="qa-a">${qa.a}</div></div>`
+      )
+      .join('');
+    backdrop.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    backdrop.style.display = 'none';
+    document.body.style.overflow = '';
+    videoEl.pause();
+    videoEl.removeAttribute('src');
+    videoEl.load();
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-interview]').forEach((card) => {
+    card.addEventListener('click', () => openModal(card.dataset.interview!));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card.dataset.interview!);
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop.style.display !== 'none') closeModal();
+  });
+
+  // ===== Alba video play =====
+  const playAlba = document.querySelector<HTMLButtonElement>('[data-play-alba]');
+  const albaVideo = document.querySelector<HTMLVideoElement>('[data-alba-video]');
+  playAlba?.addEventListener('click', () => {
+    if (!albaVideo) return;
+    albaVideo.style.display = 'block';
+    playAlba.style.display = 'none';
+    albaVideo.play().catch(() => {});
+  });
+</script>

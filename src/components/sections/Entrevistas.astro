@@ -1,0 +1,117 @@
+---
+import SectionHead from '../SectionHead.astro';
+import { INTERVIEWS } from '../../data/interviews';
+
+const albaQA = [
+  { q: '¿A cuántos festivales has ido?', a: 'A tres.' },
+  { q: '¿Vas sola o con más personas?', a: 'Con amigos.' },
+  { q: '¿Cuál ha sido tu experiencia favorita?', a: 'Escuchar mis canciones favoritas.' },
+  { q: '¿Qué influye más para decidir si vas a un festival?', a: 'El cartel y el precio: tanto el de las entradas como el del transporte y todo lo que viene con él.' },
+  { q: '¿Viajarías a otro país solo para ir a un festival?', a: 'No. Me gusta turistear y conocer lugares nuevos, así que no iría solo por el festival sino también para conocer y experimentar nuevas gastronomías y ciudades.' },
+  { q: '¿Crees que los festivales pueden cambiar la imagen de una ciudad?', a: 'Totalmente. Hay muchos festivales que se organizan en pueblos o pequeñas ciudades como el Resurrection Fest.' },
+];
+
+const cards = [
+  { num: '02', key: 'rbf' },
+  { num: '03', key: 'hoky' },
+  { num: '04', key: 'granca' },
+  { num: '05', key: 'ticketmaster' },
+  { num: '06', key: 'tomaticket' },
+  { num: '07', key: 'renfe' },
+  { num: '08', key: 'metro' },
+  { num: '09', key: 'cehat' },
+];
+---
+
+<section class="article-section" data-section="entrevistas">
+  <SectionHead
+    kicker="Capítulo 02"
+    rubric="Voces del sector"
+    title="Quien lo <span class='em'>vive</span> y quien lo <span class='em'>organiza</span>"
+    deck="Hablamos con asistentes, festivales, plataformas de venta de entradas, transportistas y hoteleros para entender el ecosistema del turismo musical."
+  />
+
+  <div style="margin-bottom:24px;">
+    <div class="section-rubric" style="margin-bottom:12px;">Vídeo · entrevista en directo</div>
+    <h3 class="display intro-h3">
+      Alba, asistente: <em>«Viajo con amigos por la música»</em>
+    </h3>
+  </div>
+
+  <div class="video-feature">
+    <div class="video-frame">
+      <video
+        data-alba-video
+        src="/media/alba-interview.mp4"
+        playsinline
+        controls
+        preload="metadata"
+        style="display:none; width:100%; height:100%; object-fit:cover; position:absolute; inset:0; z-index:3;"
+      ></video>
+      <button class="play-button" aria-label="Reproducir vídeo" data-play-alba></button>
+      <div class="video-meta">
+        <div class="video-title">Alba · «Pulsera, amigos y música»</div>
+        <div class="video-duration">Vídeo</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:64px;">
+    <div class="section-rubric" style="margin-bottom:12px;">Transcripción · selección</div>
+    <h3 class="display intro-h3" style="margin-bottom:32px;">
+      La conversación con <em>Alba</em>
+    </h3>
+    <div>
+      {albaQA.map((qa) => (
+        <div class="qa-block">
+          <div class="qa-q">{qa.q}</div>
+          <div class="qa-a">{qa.a}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div style="margin-top:96px;">
+    <div class="section-rubric" style="margin-bottom:12px;">Otras voces</div>
+    <h3 class="display intro-h3" style="margin-bottom:32px;">
+      Festivales, ticketeras, transporte y <em>hoteles</em>
+    </h3>
+    <div class="interview-grid">
+      {
+        cards.map((c) => {
+          const data = INTERVIEWS[c.key];
+          return (
+            <article
+              class="interview-card"
+              data-interview={c.key}
+              role="button"
+              tabindex="0"
+            >
+              <div class="interview-num">{c.num}</div>
+              <div class="interview-name">{data.name}</div>
+              <div class="interview-meta">{data.meta}</div>
+              <div class="interview-quote">«{data.quote}»</div>
+              <div class="interview-arrow">Leer entrevista →</div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro-h3 {
+    font-size: 2.4rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .intro-h3 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+  @media (max-width: 880px) {
+    .intro-h3 { font-size: 1.6rem; }
+  }
+</style>

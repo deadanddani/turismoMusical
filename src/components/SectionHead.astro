@@ -1,0 +1,27 @@
+---
+interface Props {
+  kicker: string;
+  rubric: string;
+  title: string;
+  deck: string;
+  byline?: string;
+}
+
+const { kicker, rubric, title, deck, byline } = Astro.props;
+---
+
+<div class="section-head">
+  <div>
+    <div class="section-rubric">
+      <span class="section-kicker">{kicker}</span>
+      {rubric}
+    </div>
+    <h2 class="section-title" set:html={title} />
+  </div>
+  <div>
+    <p class="section-deck">{deck}</p>
+    {byline && (
+      <div class="byline">Por <strong>{byline}</strong></div>
+    )}
+  </div>
+</div>

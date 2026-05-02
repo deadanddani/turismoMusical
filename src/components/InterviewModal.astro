@@ -1,0 +1,73 @@
+---
+import { INTERVIEWS } from '../data/interviews';
+---
+
+<div class="modal-backdrop" data-modal-backdrop style="display:none">
+  <div class="modal" role="dialog" aria-modal="true" data-modal>
+    <button class="modal-close" data-modal-close aria-label="Cerrar">×</button>
+    <div class="modal-content">
+      <div class="modal-rubric">Entrevista</div>
+      <h2 class="modal-title" data-modal-title></h2>
+      <div class="modal-meta" data-modal-meta></div>
+      <div class="modal-video" data-modal-video style="display:none">
+        <video data-modal-video-el controls preload="metadata" playsinline></video>
+        <div class="modal-video-caption" data-modal-video-caption></div>
+      </div>
+      <div data-modal-qa></div>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ INTERVIEWS }}>
+  window.__INTERVIEW_DATA__ = INTERVIEWS;
+</script>
+
+<style is:global>
+  /* Custom scrollbar inside the interview modal */
+  .modal {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--bg-2);
+  }
+  .modal::-webkit-scrollbar {
+    width: 10px;
+  }
+  .modal::-webkit-scrollbar-track {
+    background: var(--bg-2);
+    border-left: 1px solid var(--rule-soft);
+  }
+  .modal::-webkit-scrollbar-thumb {
+    background: var(--ink-3);
+    border-radius: 999px;
+    border: 2px solid var(--bg-2);
+    transition: background 0.2s ease;
+  }
+  .modal::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
+  .modal::-webkit-scrollbar-corner {
+    background: var(--bg-2);
+  }
+</style>
+
+<style>
+  .modal-video {
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .modal-video video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border: 1px solid var(--rule);
+    display: block;
+  }
+  .modal-video-caption {
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+const TABS = [
+  { id: 'reportaje', num: '01', label: 'Reportaje' },
+  { id: 'entrevistas', num: '02', label: 'Entrevistas' },
+  { id: 'promocion', num: '03', label: 'Promoción' },
+  { id: 'problemas', num: '04', label: 'Problemas y retos' },
+  { id: 'futuro', num: '05', label: 'Futuro' },
+];
+---
+
+<nav class="tabs" data-tabs>
+  <div class="tabs-inner">
+    {
+      TABS.map((t) => (
+        <button class={`tab ${t.id === 'reportaje' ? 'active' : ''}`} data-tab={t.id}>
+          <span class="tab-num">{t.num}</span>
+          <span>{t.label}</span>
+        </button>
+      ))
+    }
+  </div>
+</nav>

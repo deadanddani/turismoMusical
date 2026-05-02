@@ -1,0 +1,65 @@
+---
+import SectionHead from '../SectionHead.astro';
+import VoiceReader from '../VoiceReader.astro';
+
+const challenges = [
+  { num: 'I', title: 'Masificación', body: 'Grandes concentraciones en accesos y salidas obligan a dispositivos especiales, refuerzo de personal y coordinación con servicios de transporte para evitar colapsos.' },
+  { num: 'II', title: 'Movilidad bajo presión', body: 'Renfe ha tenido que cerrar estaciones por seguridad. Metro de Madrid implementa regulación de accesos y control de flujos en eventos de gran afluencia.' },
+  { num: 'III', title: 'Competencia por el espacio', body: 'La aparición de eventos de gran formato y la concentración del sector obligan a competir por espacios bien comunicados y suficientemente amplios, no siempre fáciles de gestionar.' },
+  { num: 'IV', title: 'Dependencia económica', body: 'Según el Observatorio Cultural de la Generalitat Valenciana, el 62% de los festivales dependen de subvenciones públicas. Eso los hace sensibles a cambios políticos.' },
+  { num: 'V', title: 'Inflación del modelo', body: 'Costes de producción, logística, seguridad y cachés han disparado el precio de las entradas. Para muchos clientes, asistir se vuelve inasumible.' },
+  { num: 'VI', title: 'Picos de demanda', body: 'Hoteles y servicios deben adaptarse a ocupaciones extremas en periodos muy concretos, manteniendo la calidad sin descuidar al residente local ni al turista habitual.' },
+];
+---
+
+<section class="article-section" data-section="problemas">
+  <VoiceReader />
+  <SectionHead
+    kicker="Capítulo 04"
+    rubric="Problemas y retos"
+    title="La <span class='em'>otra cara</span>: el backstage del crecimiento"
+    deck="Junto al auge aparecen retos que afectan a la organización y a las ciudades: masificación, movilidad, costes y sostenibilidad del modelo."
+    byline="Cristina Mauro"
+  />
+
+  <div class="challenge-grid">
+    {challenges.map((c) => (
+      <div class="challenge">
+        <div class="challenge-num">{c.num}</div>
+        <div class="challenge-title">{c.title}</div>
+        <div class="challenge-body">{c.body}</div>
+      </div>
+    ))}
+  </div>
+
+  <div class="body-grid" style="margin-top:80px;">
+    <aside class="body-aside">
+      <div class="body-aside-label">Datos clave</div>
+      <ul class="body-aside-list">
+        <li>62% de festivales con subvención pública</li>
+        <li>Aumento sostenido del precio medio</li>
+        <li>Picos de ocupación en hoteles</li>
+      </ul>
+    </aside>
+
+    <div class="body-prose">
+      <p>
+        La sostenibilidad del modelo se plantea como un reto clave. La diversificación de ingresos
+        mediante alianzas con empresas locales, junto con la coordinación constante con
+        administraciones públicas en logística, seguridad y convivencia, resulta fundamental para
+        garantizar su viabilidad a largo plazo.
+      </p>
+      <p>
+        El propio sector reconoce la importancia de seguir conectando con un público mayoritariamente
+        joven y gestionar la alta afluencia de asistentes de fuera de la región. Esa concentración
+        de demanda obliga a los establecimientos a adaptarse a picos extremos en periodos muy
+        concretos, dificultando el mantenimiento de la calidad del servicio.
+      </p>
+      <blockquote class="pullquote">
+        «Como cualquier evento masivo, requiere una gestión adecuada para minimizar molestias y
+        garantizar la convivencia.»
+        <cite>Reggaeton Beach Festival</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>

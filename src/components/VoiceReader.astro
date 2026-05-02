@@ -1,0 +1,21 @@
+---
+interface Props {
+  label?: string;
+}
+const { label = 'Escuchar capítulo' } = Astro.props;
+---
+
+<div class="voice-reader" data-voice-reader>
+  <button class="voice-btn" data-voice-play aria-label="Reproducir">
+    <svg viewBox="0 0 14 14" data-voice-icon-play><polygon points="3,2 12,7 3,12"></polygon></svg>
+    <svg viewBox="0 0 14 14" data-voice-icon-pause style="display:none">
+      <rect x="2" y="2" width="3" height="10"></rect>
+      <rect x="9" y="2" width="3" height="10"></rect>
+    </svg>
+  </button>
+  <span class="voice-label" data-voice-label data-default-label={label}>{label}</span>
+  <span class="voice-bars" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </span>
+  <button class="voice-stop" data-voice-stop aria-label="Detener" style="display:none">Detener</button>
+</div>
