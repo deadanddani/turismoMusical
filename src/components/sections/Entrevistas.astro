@@ -32,6 +32,19 @@ const cards = [
     deck="Hablamos con asistentes, festivales, plataformas de venta de entradas, transportistas y hoteleros para entender el ecosistema del turismo musical."
   />
 
+  <div class="alba-intro">
+    <p>
+      El turismo musical se ha consolidado en los últimos años como una de las formas de viaje
+      más atractivas, especialmente entre los jóvenes. Cada vez son más las personas que se
+      desplazan dentro y fuera de España para asistir a festivales y conciertos, convirtiendo la
+      música en el motivo central de sus escapadas.
+    </p>
+    <p>
+      Para entender mejor este fenómeno, hablamos con Alba, una joven que ha viajado en varias
+      ocasiones para asistir a festivales y disfrutar de la música en directo:
+    </p>
+  </div>
+
   <div style="margin-bottom:24px;">
     <div class="section-rubric" style="margin-bottom:12px;">Vídeo · entrevista en directo</div>
     <h3 class="display intro-h3">
@@ -112,7 +125,23 @@ const cards = [
     color: var(--accent);
     font-style: italic;
   }
+  .alba-intro {
+    margin: 16px 0 48px;
+    max-width: 720px;
+  }
+  .alba-intro p {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin-bottom: 1em;
+  }
+  .alba-intro p:last-child {
+    margin-bottom: 0;
+  }
   @media (max-width: 880px) {
     .intro-h3 { font-size: 1.6rem; }
+    .alba-intro { margin: 12px 0 32px; }
+    .alba-intro p { font-size: 1.1rem; }
   }
 </style>
