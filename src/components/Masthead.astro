@@ -1,6 +1,6 @@
 ---
 const base = import.meta.env.BASE_URL;
-const docHref = `${base}media/El%20turismo%20musical_%20Una%20nueva%20forma%20de%20viajar%20impulsada%20por%20la%20m%C3%BAsica.pdf`;
+const docHref = `${base}media/reportaje-turismo-musical.pdf`;
 ---
 
 <header class="masthead">
@@ -15,7 +15,8 @@ const docHref = `${base}media/El%20turismo%20musical_%20Una%20nueva%20forma%20de
       <a
         class="theme-toggle download-btn"
         href={docHref}
-        download
+        download="reportaje-turismo-musical.pdf"
+        type="application/pdf"
         aria-label="Descargar el reportaje completo"
       >
         <span class="download-icon" aria-hidden="true">↓</span>
