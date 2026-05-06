@@ -10,6 +10,7 @@ interface Member {
   role: string;
   email: string;
   photo: string;
+  focus?: string;
 }
 
 const team: Member[] = [
@@ -24,6 +25,7 @@ const team: Member[] = [
     role: 'Reportaje · Futuro',
     email: 'sofigo08@ucm.es',
     photo: 'team/sofia.jpg',
+    focus: 'center 22%',
   },
   {
     name: 'Cristina Mauro Piquer',
@@ -68,7 +70,12 @@ const team: Member[] = [
       {team.map((m) => (
         <article class="team-card">
           <div class="team-photo">
-            <img src={`${base}${m.photo}`} alt={`Retrato de ${m.name}`} loading="lazy" />
+            <img
+              src={`${base}${m.photo}`}
+              alt={`Retrato de ${m.name}`}
+              loading="lazy"
+              style={m.focus ? `object-position: ${m.focus}` : undefined}
+            />
           </div>
           <div class="team-body">
             <div class="team-role">{m.role}</div>
