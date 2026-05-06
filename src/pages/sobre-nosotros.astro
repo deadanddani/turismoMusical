@@ -8,40 +8,40 @@ const base = import.meta.env.BASE_URL;
 interface Member {
   name: string;
   role: string;
-  bio: string;
+  email: string;
   photo: string;
 }
 
 const team: Member[] = [
   {
-    name: 'Cristina Mauro',
-    role: 'Reportaje · Problemas y retos',
-    bio: 'Añade aquí una breve presentación de Cristina: estudios, intereses y el papel que ha tenido en el reportaje.',
-    photo: 'team/cristina.jpg',
+    name: 'Raquel González Domínguez',
+    role: 'Reportaje',
+    email: 'raqueg19@ucm.es',
+    photo: 'team/raquel.jpg',
   },
   {
-    name: 'Kilian Quintana',
-    role: 'Reportaje · Capítulo introductorio',
-    bio: 'Añade aquí una breve presentación de Kilian: estudios, intereses y el papel que ha tenido en el reportaje.',
-    photo: 'team/kilian.jpg',
+    name: 'Sofía González Gordaliza',
+    role: 'Reportaje · Futuro',
+    email: 'sofigo08@ucm.es',
+    photo: 'team/sofia.jpg',
+  },
+  {
+    name: 'Cristina Mauro Piquer',
+    role: 'Reportaje · Problemas y retos',
+    email: 'crmauro@ucm.es',
+    photo: 'team/cristina.jpg',
   },
   {
     name: 'Marta de No Copano',
     role: 'Reportaje · Promoción y redes',
-    bio: 'Añade aquí una breve presentación de Marta: estudios, intereses y el papel que ha tenido en el reportaje.',
+    email: 'martadno@ucm.es',
     photo: 'team/marta.jpg',
   },
   {
-    name: 'Raquel González',
-    role: 'Reportaje',
-    bio: 'Añade aquí una breve presentación de Raquel: estudios, intereses y el papel que ha tenido en el reportaje.',
-    photo: 'team/raquel.jpg',
-  },
-  {
-    name: 'Sofía González',
-    role: 'Reportaje · Futuro',
-    bio: 'Añade aquí una breve presentación de Sofía: estudios, intereses y el papel que ha tenido en el reportaje.',
-    photo: 'team/sofia.jpg',
+    name: 'Kilian Quintana Deniz',
+    role: 'Reportaje · Capítulo introductorio',
+    email: 'kilquint@ucm.es',
+    photo: 'team/kilian.jpg',
   },
 ];
 ---
@@ -73,7 +73,7 @@ const team: Member[] = [
           <div class="team-body">
             <div class="team-role">{m.role}</div>
             <h2 class="team-name">{m.name}</h2>
-            <p class="team-bio">{m.bio}</p>
+            <a class="team-email" href={`mailto:${m.email}`}>{m.email}</a>
           </div>
         </article>
       ))}
@@ -137,19 +137,20 @@ const team: Member[] = [
     margin: 0 auto;
     padding: 72px 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 56px 40px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 48px 32px;
   }
   .team-card {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
   }
   .team-photo {
     position: relative;
-    aspect-ratio: 4 / 5;
+    width: 140px;
+    aspect-ratio: 1 / 1;
     background: var(--rule);
-    border-radius: 4px;
+    border-radius: 50%;
     overflow: hidden;
   }
   .team-photo::after {
@@ -183,17 +184,27 @@ const team: Member[] = [
   }
   .team-name {
     font-family: 'Fraunces', Georgia, serif;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 400;
     letter-spacing: -0.02em;
-    line-height: 1.05;
-    margin: 8px 0 0;
+    line-height: 1.1;
+    margin: 6px 0 0;
   }
-  .team-bio {
-    margin: 0;
-    color: var(--ink);
-    font-size: 1rem;
-    line-height: 1.55;
+  .team-email {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+    word-break: break-all;
+  }
+  .team-email:hover {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 
   .about-back {
