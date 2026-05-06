@@ -11,6 +11,7 @@ interface Member {
   email: string;
   photo: string;
   focus?: string;
+  enhance?: boolean;
 }
 
 const team: Member[] = [
@@ -33,6 +34,7 @@ const team: Member[] = [
     email: 'crmauro@ucm.es',
     photo: 'team/cristina.jpg',
     focus: 'center 22%',
+    enhance: true,
   },
   {
     name: 'Marta de No Copano',
@@ -73,6 +75,7 @@ const team: Member[] = [
         <article class="team-card">
           <div class="team-photo">
             <img
+              class={m.enhance ? 'enhance' : undefined}
               src={`${base}${m.photo}`}
               alt={`Retrato de ${m.name}`}
               loading="lazy"
@@ -182,6 +185,10 @@ const team: Member[] = [
     display: block;
     position: relative;
     z-index: 1;
+  }
+  .team-photo img.enhance {
+    filter: contrast(1.08) saturate(1.06) brightness(1.02);
+    image-rendering: -webkit-optimize-contrast;
   }
   .team-photo img[src$="undefined"], .team-photo img:not([src]) { display: none; }
   .team-role {
