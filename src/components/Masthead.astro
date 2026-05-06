@@ -1,4 +1,6 @@
 ---
+const base = import.meta.env.BASE_URL;
+const docHref = `${base}media/El%20turismo%20musical_%20Una%20nueva%20forma%20de%20viajar%20impulsada%20por%20la%20m%C3%BAsica.docx`;
 ---
 
 <header class="masthead">
@@ -9,13 +11,48 @@
         <span class="brand-title">El turismo musical</span>
       </div>
     </div>
-    <button
-      class="theme-toggle"
-      data-theme-toggle
-      aria-label="Cambiar entre modo día y noche"
-    >
-      <span class="toggle-icon"></span>
-      <span data-theme-label>Noche</span>
-    </button>
+    <div class="masthead-actions">
+      <a
+        class="theme-toggle download-btn"
+        href={docHref}
+        download
+        aria-label="Descargar el reportaje completo"
+      >
+        <span class="download-icon" aria-hidden="true">↓</span>
+        <span>Descargar reportaje</span>
+      </a>
+      <button
+        class="theme-toggle"
+        data-theme-toggle
+        aria-label="Cambiar entre modo día y noche"
+      >
+        <span class="toggle-icon"></span>
+        <span data-theme-label>Noche</span>
+      </button>
+    </div>
   </div>
 </header>
+
+<style>
+  .masthead-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .download-btn {
+    text-decoration: none;
+  }
+  .download-icon {
+    display: inline-flex;
+    width: 14px;
+    height: 14px;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+  @media (max-width: 880px) {
+    .masthead-actions { gap: 8px; }
+    .download-btn span:not(.download-icon) { display: none; }
+  }
+</style>
