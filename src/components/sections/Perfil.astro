@@ -1,0 +1,166 @@
+---
+import SectionHead from '../SectionHead.astro';
+import VoiceReader from '../VoiceReader.astro';
+
+const demographics = [
+  { num: '66', unit: '%', label: 'Asistentes mujeres en el Hoky Music 2025.', source: 'Hoky Music' },
+  { num: '37,4', unit: '%', label: 'Hombres frente al 33,5% de mujeres en festivales de música actual.', source: 'Anuario de Estadísticas Culturales 2025' },
+  { num: '15-19', unit: 'años', label: 'Segmento de edad mayoritario, seguido del de 20 a 24 años.', source: 'Min. de Cultura' },
+  { num: '65', unit: '%', label: 'Público extranjero en el Primavera Sound.', source: 'Asociación de Promotores Musicales' },
+];
+
+const motivaciones = [
+  { head: 'La experiencia por encima de todo', body: 'Lo que diferencia un festival de un concierto: ambientes inmersivos, estéticas propias y una vivencia compartida que justifica el desplazamiento.' },
+  { head: 'Música primero, ciudad después', body: 'Muchos viajan «con el único objetivo» de acudir al festival y aprovechan «un día o dos más para ver la ciudad».' },
+  { head: 'Conectar con la tribu', body: 'El público busca «conexiones reales y significativas con otros fans» que comparten gustos musicales (Ticketmaster).' },
+  { head: 'El cartel manda', body: 'La compañía cuenta, pero lo que realmente mueve es el cartel: «si un artista te gusta mucho el precio es más secundario».' },
+];
+---
+
+<section class="article-section" data-section="perfil">
+  <VoiceReader />
+  <SectionHead
+    kicker="Capítulo 02"
+    rubric="Perfil del turista musical"
+    title="Pulsera, amigos <span class='em'>y música</span>"
+    deck="Una maleta, una entrada y un destino. Así comienza el viaje de miles de turistas musicales con el objetivo de acudir a un festival."
+  />
+
+  <div class="body-grid">
+    <aside class="body-aside">
+      <div class="body-aside-label">En este capítulo</div>
+      <ul class="body-aside-list">
+        <li>De viajeros a buscadores de experiencias</li>
+        <li>Quién acude a los festivales</li>
+        <li>Origen del público</li>
+        <li>Motivaciones reales del turista</li>
+      </ul>
+    </aside>
+
+    <div class="body-prose">
+      <p>
+        En España hay festivales de todo tipo, desde pequeños como el Hoky Music de Santander, que
+        ronda los 12.000 asistentes al año, hasta el Arenal Sound, que lidera el ranking con
+        300.000 asistentes en 2025. Con tantos espectadores es difícil crear un perfil común, pero
+        sí siguen varios rasgos generales que pueden ayudar a su identificación.
+      </p>
+      <p>
+        Quedan dos misterios por desvelar sobre estos turistas musicales: ¿viajan solo para
+        acudir a festivales? Y, lo más importante, ¿cuál es su motivación para ir a estos eventos?
+      </p>
+
+      <h3 class="prose-h3">
+        Del lugar bonito a la <em>experiencia completa</em>
+      </h3>
+
+      <p>
+        El turismo ha cambiado en los últimos años: los viajeros no solo buscan un lugar bonito
+        al que ir, quieren experiencias. Según la Confederación Española de Hoteles y Alojamientos
+        Turísticos (CEHAT), las personas «buscan cada vez más actividades concretas que justifiquen
+        su desplazamiento, y los grandes eventos como festivales generan un impacto muy relevante
+        en todo el ecosistema turístico».
+      </p>
+
+      <blockquote class="pullquote">
+        «La música en directo se vive cada vez más como una experiencia completa.»
+        <cite>Tomaticket · venta de entradas</cite>
+      </blockquote>
+
+      <p>
+        La palabra <em>experiencia</em> se repite constantemente al hablar de festivales. La
+        mencionan dos asistentes, Alba y Laura, en diferentes ocasiones para explicar lo que les
+        aportan estos eventos. La experiencia es justo lo que los diferencia de un concierto y
+        suele ser una de las principales razones para acudir.
+      </p>
+      <p>
+        Laura Williams, asistente a festivales, comenta que en los festivales se puede ver a
+        «diferentes artistas y diferentes mundos personales, todos unidos por la música». Esto
+        depende en gran medida de los organizadores, que dan su toque propio o crean un ambiente
+        más inmersivo según el género: la estética playera del Arenal Sound, el ambiente rockero
+        del Viña Rock o la energía relajada del Rototom Sunsplash atraen al público que quiere
+        ese tipo de experiencias.
+      </p>
+
+      <h3 class="prose-h3">
+        ¿Quién acude <em>a los festivales</em>?
+      </h3>
+
+      <div class="stat-grid">
+        {demographics.map((d) => (
+          <div class="stat">
+            <div class="stat-num">{d.num}<span class="pct">{d.unit}</span></div>
+            <div class="stat-label">{d.label}</div>
+            <div class="stat-source">Fuente: {d.source}</div>
+          </div>
+        ))}
+      </div>
+
+      <p>
+        Los datos de público del Hoky Music 2025 muestran que el 66% de los asistentes fueron
+        mujeres. Sin embargo, otros datos del Ministerio de Cultura matizan: de los encuestados
+        que fueron a festivales de música actual, el 37,4% fueron hombres frente al 33,5% de
+        mujeres. El Anuario de Estadísticas Culturales 2025 sitúa el segmento mayoritario entre
+        los 15 y los 19 años, muy seguido por el de 20 a 24.
+      </p>
+      <p>
+        Cuanto más mayores son las personas, menos acuden a festivales. Esa información coincide
+        con la del Hoky Music, cuyo público abarca principalmente de los 18 a los 24 años. Y el
+        público no solo es local o nacional: según el Anuario de la música en vivo de la
+        Asociación de Promotores Musicales, en el Primavera Sound el 65% de los asistentes son
+        extranjeros, encabezados por Reino Unido, Estados Unidos e Italia.
+      </p>
+
+      <h3 class="prose-h3">
+        Dentro de la mente <em>del turista musical</em>
+      </h3>
+
+      <p>
+        Toca entrar realmente en la mente de estos turistas. Unos turistas que viajan «con el
+        único objetivo» de acudir a un festival, como dijo Laura Williams. Muchos se desplazan a
+        otros lugares solo para ir a estos eventos y, ya que están allí, a veces aprovechan «un
+        día o dos más para ver la ciudad». Desde el Granca Live Fest han notado que muchas
+        personas organizan su viaje en torno a las fechas del evento para combinar música y
+        turismo.
+      </p>
+
+      <blockquote class="pullquote">
+        «Si un artista te gusta mucho, el precio es más secundario.»
+        <cite>Laura · asistente a festivales</cite>
+      </blockquote>
+
+      <p>
+        Durante los festivales, el público busca crear «conexiones reales y significativas con
+        otros fans con sus mismos gustos musicales», cuenta Ticketmaster. Formar parte de ese
+        colectivo social y establecer relaciones promueve este tipo de eventos. Sin embargo, la
+        compañía no lo es todo: lo que realmente mueve a las personas para ir a un festival es
+        el cartel de artistas. Porque, tanto para Laura como para muchas otras, el precio pasa a
+        un segundo plano cuando el cartel convence.
+      </p>
+
+      <div class="timeline">
+        {motivaciones.map((m, i) => (
+          <div class="timeline-row">
+            <div class="timeline-year">{String(i + 1).padStart(2, '0')}</div>
+            <div class="timeline-headline">{m.head}</div>
+            <div class="timeline-body">{m.body}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .prose-h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 72px 0 32px;
+    line-height: 1.05;
+  }
+  .prose-h3 em { color: var(--accent); }
+  @media (max-width: 880px) {
+    .prose-h3 { font-size: 1.7rem; margin: 48px 0 20px; }
+  }
+</style>

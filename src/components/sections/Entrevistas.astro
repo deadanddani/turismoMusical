@@ -3,7 +3,7 @@ import SectionHead from '../SectionHead.astro';
 import { INTERVIEWS } from '../../data/interviews';
 const base = import.meta.env.BASE_URL;
 
-const albaQA = [
+const lauraQA = [
   { q: '¿A cuántos festivales has ido?', a: 'A tres.' },
   { q: '¿Vas sola o con más personas?', a: 'Con amigos.' },
   { q: '¿Cuál ha sido tu experiencia favorita?', a: 'Escuchar mis canciones favoritas.' },
@@ -26,7 +26,7 @@ const cards = [
 
 <section class="article-section" data-section="entrevistas">
   <SectionHead
-    kicker="Capítulo 02"
+    kicker="Capítulo 04"
     rubric="Voces del sector"
     title="Quien lo <span class='em'>vive</span> y quien lo <span class='em'>organiza</span>"
     deck="Hablamos con asistentes, festivales, plataformas de venta de entradas, transportistas y hoteleros para entender el ecosistema del turismo musical."
@@ -40,7 +40,7 @@ const cards = [
       música en el motivo central de sus escapadas.
     </p>
     <p>
-      Para entender mejor este fenómeno, hablamos con Alba, una joven que ha viajado en varias
+      Para entender mejor este fenómeno, hablamos con Laura, una joven que ha viajado en varias
       ocasiones para asistir a festivales y disfrutar de la música en directo:
     </p>
   </div>
@@ -48,7 +48,7 @@ const cards = [
   <div style="margin-bottom:24px;">
     <div class="section-rubric" style="margin-bottom:12px;">Vídeo · entrevista en directo</div>
     <h3 class="display intro-h3">
-      Alba, asistente: <em>«Viajo con amigos por la música»</em>
+      Laura, asistente: <em>«Viajo con amigos por la música»</em>
     </h3>
   </div>
 
@@ -64,7 +64,7 @@ const cards = [
       ></video>
       <button class="play-button" aria-label="Reproducir vídeo" data-play-alba></button>
       <div class="video-meta">
-        <div class="video-title">Alba · «Pulsera, amigos y música»</div>
+        <div class="video-title">Laura · «Pulsera, amigos y música»</div>
         <div class="video-duration">Vídeo</div>
       </div>
     </div>
@@ -72,7 +72,7 @@ const cards = [
 
   <div class="alba-outro body-prose">
     <p>
-      La experiencia de Alba es solo un ejemplo de una tendencia cada vez más extendida. Aunque el
+      La experiencia de Laura es solo un ejemplo de una tendencia cada vez más extendida. Aunque el
       festival actúa como principal reclamo, muchos asistentes aprovechan estos viajes para
       descubrir nuevos destinos, su gastronomía y su cultura, enriqueciendo así la experiencia más
       allá de lo musical.
@@ -82,10 +82,10 @@ const cards = [
   <div style="margin-top:64px;">
     <div class="section-rubric" style="margin-bottom:12px;">Transcripción · selección</div>
     <h3 class="display intro-h3" style="margin-bottom:32px;">
-      La conversación con <em>Alba</em>
+      La conversación con <em>Laura</em>
     </h3>
     <div>
-      {albaQA.map((qa) => (
+      {lauraQA.map((qa) => (
         <div class="qa-block">
           <div class="qa-q">{qa.q}</div>
           <div class="qa-a">{qa.a}</div>

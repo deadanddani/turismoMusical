@@ -1,0 +1,159 @@
+---
+import SectionHead from '../SectionHead.astro';
+import VoiceReader from '../VoiceReader.astro';
+
+const stats = [
+  { num: '6.000M', unit: '€', label: 'Generados por conciertos y festivales en España (2025).', source: 'Sympathy for the Lawyer' },
+  { num: '55', unit: '%', label: 'Del impacto va a hoteles, restaurantes y transporte.', source: 'Sympathy for the Lawyer' },
+  { num: '12,3', unit: '%', label: 'Peso del turismo en el PIB español (2023).', source: 'Min. de Industria y Turismo' },
+];
+
+const sectores = [
+  { who: 'CEHAT · Hoteles', text: 'Cuando se anuncia un festival, la demanda en hoteles y alojamientos de la zona aumenta rápidamente: «concentran una elevada demanda en periodos muy concretos».' },
+  { who: 'Renfe · Tren', text: '«Lleva años reforzando el servicio con más trenes y servicios fuera del horario habitual, sobre todo trenes de madrugada». También cierra estaciones para evitar aglomeraciones.' },
+  { who: 'Metro de Madrid', text: 'Reconoce un aumento del número de viajeros, especialmente turistas internacionales, y prepara dispositivos especiales para garantizar la seguridad.' },
+  { who: 'Comercio local', text: 'Bares, restaurantes y actividades culturales se ven beneficiados: el turista alarga la estancia y suma gastronomía, cultura y ocio al viaje.' },
+];
+---
+
+<section class="article-section" data-section="impacto">
+  <VoiceReader />
+  <SectionHead
+    kicker="Capítulo 03"
+    rubric="Impacto económico y turístico"
+    title="La industria detrás <span class='em'>del espectáculo</span>"
+    deck="El turista que viaja a un festival no solo paga la entrada: también gasta en alojamiento, restauración y transporte. El impacto sobre la economía local es directo y medible."
+  />
+
+  <div class="body-grid">
+    <aside class="body-aside">
+      <div class="body-aside-label">En este capítulo</div>
+      <ul class="body-aside-list">
+        <li>Festivales como motor económico</li>
+        <li>Hoteles, transporte y comercio</li>
+        <li>Alargar la estancia turística</li>
+        <li>Caras menos amables del modelo</li>
+      </ul>
+    </aside>
+
+    <div class="body-prose">
+      <p>
+        El aumento de los turistas que se desplazan solo para asistir a festivales, vivir la
+        experiencia y conocer gente tiene un impacto positivo en la economía del país de destino
+        en forma de ingresos, renta y empleo. Cuando este turista viaja a otro país, no se gasta
+        dinero solamente en la entrada al festival: también lo hace en alojamiento, restauración
+        y transporte.
+      </p>
+      <p>
+        Según el anuario de la Asociación de Promotores Musicales de 2026, en los principales
+        festivales españoles —como el Arenal Sound o el Primavera Sound— hay una mayoría de
+        público extranjero. Estos porcentajes impactan directamente en la economía local, y «los
+        festivales se consolidan como un motor económico estratégico y un fenómeno turístico de
+        impacto global en España».
+      </p>
+
+      <div class="stat-grid">
+        {stats.map((s) => (
+          <div class="stat">
+            <div class="stat-num">{s.num}<span class="pct">{s.unit}</span></div>
+            <div class="stat-label">{s.label}</div>
+            <div class="stat-source">Fuente: {s.source}</div>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="prose-h3">
+        Hoteles, trenes <em>y comercio local</em>
+      </h3>
+
+      <p>
+        La Confederación Española de Hoteles y Alojamientos Turísticos (CEHAT) afirma que cuando
+        se anuncia un festival la demanda crece rápidamente y eso impacta en la actividad y
+        rentabilidad del sector, ya que «concentran una elevada demanda en periodos muy
+        concretos». Es además un reto: los hoteles deben adaptarse a estos picos y garantizar el
+        servicio a un número muy elevado de personas al mismo tiempo.
+      </p>
+
+      <blockquote class="pullquote">
+        «Llevamos años reforzando el servicio con más trenes y servicios fuera del horario
+        habitual, sobre todo trenes de madrugada.»
+        <cite>Renfe</cite>
+      </blockquote>
+
+      <p>
+        El impacto va más allá de los hoteles: bares, restaurantes y medios de transporte también
+        se ven afectados. Renfe colabora con la organización de festivales para garantizar el
+        servicio a los asistentes y, al mismo tiempo, modifica su actividad reforzando servicios
+        y cerrando estaciones para evitar aglomeraciones. Metro de Madrid también reconoce un
+        aumento de viajeros coincidiendo con festivales —especialmente turistas
+        internacionales— y ha tenido que preparar medidas especiales de seguridad.
+      </p>
+
+      <div class="timeline">
+        {sectores.map((s) => (
+          <div class="timeline-row">
+            <div class="timeline-year">{s.who}</div>
+            <div class="timeline-headline">Cómo lo viven</div>
+            <div class="timeline-body">{s.text}</div>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="prose-h3">
+        Alargar el viaje, <em>fidelizar el destino</em>
+      </h3>
+
+      <p>
+        En muchos casos, los turistas que acuden a un festival en otra ciudad aprovechan la
+        oportunidad para visitarla, aumentando los ingresos por turismo y la rentabilidad del
+        comercio local y las actividades culturales. En España, el turismo es uno de los
+        principales motores económicos del país: en 2023 el sector turístico supuso alrededor del
+        12,3% del total del PIB, según los datos publicados por el Ministerio de Industria y
+        Turismo.
+      </p>
+      <p>
+        La organización de estos eventos atrae más turistas en fechas menos tradicionales para
+        vacaciones, influyendo en el sector turístico a largo plazo. Tomaticket afirma que los
+        asistentes a festivales de otras ciudades «planifican más la compra y suelen vivir el
+        evento como parte de una experiencia más amplia, que incluye viaje, estancia y ocio».
+        CEHAT explica que «este tipo de visitante suele aprovechar el desplazamiento para
+        disfrutar del destino en su conjunto, incluyendo gastronomía, cultura y ocio».
+      </p>
+
+      <h3 class="prose-h3">
+        La cara <em>menos amable</em>
+      </h3>
+
+      <p>
+        Este tipo de turismo también tiene aspectos negativos: aumento de precios de hoteles,
+        apartamentos y otros servicios, lo que reduce la accesibilidad al turismo. Mientras que
+        algunos asistentes afirman que el gasto, aunque elevado, merece la pena y se lo pueden
+        permitir, este no es el caso de todo el mundo. Además, las aglomeraciones y afluencias
+        en hoteles y transportes perjudican al resto de residentes, turistas y locales.
+      </p>
+      <p>
+        Aun así, el turismo ligado a festivales contribuye a reforzar el posicionamiento de las
+        ciudades como destinos culturales, capaces de atraer inversión y proyectar una imagen
+        internacional vinculada a la música y el ocio. Eventos como el Primavera Sound han
+        consolidado este efecto, favoreciendo la fidelización de visitantes que regresan en
+        futuras ediciones o en otros momentos del año, integrando estos eventos como parte
+        estable de la oferta turística y cultural del destino.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .prose-h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 72px 0 32px;
+    line-height: 1.05;
+  }
+  .prose-h3 em { color: var(--accent); }
+  @media (max-width: 880px) {
+    .prose-h3 { font-size: 1.7rem; margin: 48px 0 20px; }
+  }
+</style>
