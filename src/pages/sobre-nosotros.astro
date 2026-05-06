@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Masthead from '../components/Masthead.astro';
+import Colofon from '../components/Colofon.astro';
+
+const base = import.meta.env.BASE_URL;
+
+interface Member {
+  name: string;
+  role: string;
+  bio: string;
+  photo: string;
+}
+
+const team: Member[] = [
+  {
+    name: 'Cristina Mauro',
+    role: 'Reportaje · Problemas y retos',
+    bio: 'Añade aquí una breve presentación de Cristina: estudios, intereses y el papel que ha tenido en el reportaje.',
+    photo: 'team/cristina.jpg',
+  },
+  {
+    name: 'Kilian Quintana',
+    role: 'Reportaje · Capítulo introductorio',
+    bio: 'Añade aquí una breve presentación de Kilian: estudios, intereses y el papel que ha tenido en el reportaje.',
+    photo: 'team/kilian.jpg',
+  },
+  {
+    name: 'Marta de No Copano',
+    role: 'Reportaje · Promoción y redes',
+    bio: 'Añade aquí una breve presentación de Marta: estudios, intereses y el papel que ha tenido en el reportaje.',
+    photo: 'team/marta.jpg',
+  },
+  {
+    name: 'Raquel González',
+    role: 'Reportaje',
+    bio: 'Añade aquí una breve presentación de Raquel: estudios, intereses y el papel que ha tenido en el reportaje.',
+    photo: 'team/raquel.jpg',
+  },
+  {
+    name: 'Sofía González',
+    role: 'Reportaje · Futuro',
+    bio: 'Añade aquí una breve presentación de Sofía: estudios, intereses y el papel que ha tenido en el reportaje.',
+    photo: 'team/sofia.jpg',
+  },
+];
+---
+
+<Layout title="Sobre nosotros · El turismo musical">
+  <Masthead />
+  <main>
+    <section class="about-hero">
+      <div class="about-kicker">
+        <span class="about-kicker-num">→</span>
+        <span>Sobre nosotros</span>
+      </div>
+      <h1>
+        Las personas detrás <span class="em">del reportaje</span>.
+      </h1>
+      <p class="about-deck">
+        Cinco voces, una misma curiosidad: entender cómo la música mueve a los viajeros.
+        Estudiantes de periodismo que han conversado con festivales, ticketeras, transportistas,
+        hoteleros y asistentes para construir este reportaje colectivo.
+      </p>
+    </section>
+
+    <section class="team-grid">
+      {team.map((m) => (
+        <article class="team-card">
+          <div class="team-photo">
+            <img src={`${base}${m.photo}`} alt={`Retrato de ${m.name}`} loading="lazy" />
+          </div>
+          <div class="team-body">
+            <div class="team-role">{m.role}</div>
+            <h2 class="team-name">{m.name}</h2>
+            <p class="team-bio">{m.bio}</p>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="about-back">
+      <a class="back-link" href={base}>
+        <span class="back-arrow" aria-hidden="true">←</span>
+        <span>Volver al reportaje</span>
+      </a>
+    </section>
+  </main>
+  <Colofon />
+</Layout>
+
+<style>
+  main { display: block; }
+
+  .about-hero {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 80px 40px 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .about-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .about-kicker-num { color: var(--accent); }
+  .about-hero h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(48px, 9vw, 128px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0;
+    max-width: 22ch;
+  }
+  .about-hero h1 .em {
+    color: var(--accent);
+    font-style: italic;
+  }
+  .about-deck {
+    margin-top: 32px;
+    max-width: 64ch;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  .team-grid {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 72px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 56px 40px;
+  }
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .team-photo {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .team-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0 18px,
+        color-mix(in srgb, var(--ink) 6%, transparent) 18px 19px
+      );
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  .team-photo img[src$="undefined"], .team-photo img:not([src]) { display: none; }
+  .team-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+  }
+  .team-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 8px 0 0;
+  }
+  .team-bio {
+    margin: 0;
+    color: var(--ink);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .about-back {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 24px 40px 96px;
+    border-top: 1px solid var(--rule);
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 14px 0;
+    transition: color 0.25s ease, gap 0.25s ease;
+  }
+  .back-link:hover { color: var(--accent); gap: 18px; }
+
+  @media (max-width: 880px) {
+    .about-hero { padding: 48px 20px 36px; }
+    .about-deck { font-size: 1.1rem; }
+    .team-grid { padding: 48px 20px; gap: 40px 24px; }
+    .about-back { padding: 16px 20px 64px; }
+  }
+</style>

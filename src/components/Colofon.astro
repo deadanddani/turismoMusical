@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL;
 ---
 
 <footer class="colofon">
@@ -13,4 +14,47 @@
       <li>Kilian Quintana</li>
     </ul>
   </div>
+  <div class="colofon-cta">
+    <a class="about-link" href={`${base}sobre-nosotros`}>
+      <span>Sobre nosotros</span>
+      <span class="about-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
 </footer>
+
+<style>
+  .colofon-cta {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 40px 56px;
+  }
+  .about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(28px, 4.4vw, 56px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
+  }
+  .about-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    gap: 22px;
+  }
+  .about-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7em;
+    transition: transform 0.25s ease;
+  }
+  .about-link:hover .about-arrow { transform: translateX(4px); }
+  @media (max-width: 880px) {
+    .colofon-cta { padding: 0 20px 40px; }
+  }
+</style>
