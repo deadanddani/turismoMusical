@@ -12,49 +12,43 @@ const base = import.meta.env.BASE_URL;
       <li>Raquel González · Sofía González</li>
       <li>Cristina Mauro · Marta de No Copano</li>
       <li>Kilian Quintana</li>
+      <li class="colofon-about">
+        <a class="about-link" href={`${base}sobre-nosotros`}>
+          <span>Sobre nosotros</span>
+          <span class="about-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
     </ul>
-  </div>
-  <div class="colofon-cta">
-    <a class="about-link" href={`${base}sobre-nosotros`}>
-      <span>Sobre nosotros</span>
-      <span class="about-arrow" aria-hidden="true">→</span>
-    </a>
   </div>
 </footer>
 
 <style>
-  .colofon-cta {
-    max-width: 1480px;
-    margin: 0 auto;
-    padding: 0 40px 56px;
+  .colofon-about {
+    margin-top: 10px;
+    list-style: none;
   }
   .about-link {
     display: inline-flex;
     align-items: center;
-    gap: 14px;
+    gap: 8px;
     text-decoration: none;
-    color: var(--ink);
-    font-family: 'Fraunces', Georgia, serif;
-    font-size: clamp(28px, 4.4vw, 56px);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    padding-bottom: 6px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding-bottom: 2px;
     border-bottom: 1px solid var(--rule);
     transition: color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
   }
   .about-link:hover {
     color: var(--accent);
     border-color: var(--accent);
-    gap: 22px;
+    gap: 12px;
   }
   .about-arrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7em;
+    font-size: 0.85em;
     transition: transform 0.25s ease;
   }
-  .about-link:hover .about-arrow { transform: translateX(4px); }
-  @media (max-width: 880px) {
-    .colofon-cta { padding: 0 20px 40px; }
-  }
+  .about-link:hover .about-arrow { transform: translateX(3px); }
 </style>
